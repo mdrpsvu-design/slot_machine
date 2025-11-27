@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Classic Slots</title>
+    <!-- Используем тот же CSS файл для стилей символов и общих элементов -->
+    <link rel="stylesheet" href="/static/grand.css">
+    <style>
+        /* Переопределения специально для классики 1x3 */
+        .classic-machine {
+            width: 500px; /* Уже */
+            margin: 0 auto;
+        }
+        .slots-area-classic {
+            height: 120px; /* Только 1 ряд высотой */
+            border: 4px solid gold;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: inset 0 0 30px #000;
+        }
+        .reel-window-classic {
+            width: 140px;
+            height: 120px;
+            overflow: hidden;
+            background: #111;
+            border-radius: 5px;
+            position: relative;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+        }
+        /* Линия победы по центру */
+        .win-line-classic {
+            position: absolute;
+            top: 50%; left: -20px; right: -20px;
+            height: 4px; background: red;
+            box-shadow: 0 0 10px red;
+            z-index: 10; display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="grand-machine classic-machine">
+        <div class="top-bar">
+            <button class="back-btn" onclick="window.location.href='/'">⬅ MENU</button>
+            <h1 class="grand-logo">🍒 CLASSIC 777 🍒</h1>
+        </div>
+
+        <div class="slots-area-classic" style="position: relative;">
+            <div class="win-line-classic" id="winLine"></div>
+            
+            <div class="reel-window-classic"><div class="strip" id="strip1"></div></div>
+            <div class="reel-window-classic"><div class="strip" id="strip2"></div></div>
+            <div class="reel-window-classic"><div class="strip" id="strip3"></div></div>
+        </div>
+
+        <div class="controls-area">
+            <div class="info-panel">
+                <div class="tag">BALANCE</div>
+                <div class="val" id="balance">{{ balance }}</div>
+            </div>
+            
+            <div class="bet-panel">
+                <button onclick="changeBet(-10)">-</button>
+                <input id="betInput" value="50" readonly>
+                <button onclick="changeBet(10)">+</button>
+            </div>
+
+            <div class="info-panel">
+                <div class="tag">WIN</div>
+                <div class="val" id="winDisplay">0</div>
+            </div>
+        </div>
+
+        <button id="spinBtn" class="grand-spin-btn" onclick="startSpin()">SPIN</button>
+        <div id="statusText">Нажми пробел</div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

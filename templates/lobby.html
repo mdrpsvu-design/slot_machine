@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Casino Lobby</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        .lobby-container { display: flex; gap: 30px; margin-top: 50px; }
+        .game-card {
+            background: linear-gradient(145deg, #2a2a2a, #111);
+            border: 2px solid #444;
+            border-radius: 20px;
+            width: 250px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .game-card:hover { transform: translateY(-10px); border-color: gold; box-shadow: 0 0 30px rgba(255,215,0,0.3); }
+        .card-img { font-size: 80px; margin-bottom: 20px; }
+        .card-title { font-size: 24px; font-weight: bold; color: white; margin-bottom: 10px; }
+        .card-desc { color: #888; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="casino-machine" style="width: 800px; height: auto; min-height: 600px;">
+        <h1 class="logo">ROYAL HUB</h1>
+        <div class="hud-box" style="margin: 0 auto;">
+            <div class="hud-label">ВАШ БАЛАНС</div>
+            <div class="hud-value money">{{ balance }}</div>
+        </div>
+
+        <div class="lobby-container">
+            <!-- Ссылка на старую игру (если оставили endpoint) -->
+            <!-- Ссылка на классическую игру -->
+            <div class="game-card" onclick="window.location.href='/game/classic'">
+                <div class="card-img">🍒</div>
+                <div class="card-title">Classic 3</div>
+                <div class="card-desc">Простой слот 1x3. Для новичков.</div>
+            </div>
+
+            <!-- Ссылка на новую игру -->
+            <div class="game-card" onclick="window.location.href='/game/grand'">
+                <div class="card-img">👑</div>
+                <div class="card-title">Grand 5</div>
+                <div class="card-desc">Поле 3x5. 5 линий выплат. Большие выигрыши!</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

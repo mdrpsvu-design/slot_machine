@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Grand Slots 5x3</title>
+    <link rel="stylesheet" href="/static/grand.css">
+</head>
+<body>
+
+    <div class="grand-machine">
+        <div class="top-bar">
+            <button class="back-btn" onclick="window.location.href='/'">⬅ MENU</button>
+            <h1 class="grand-logo">👑 GRAND ROYAL 👑</h1>
+        </div>
+
+        <!-- ИГРОВОЕ ПОЛЕ 5 колонок -->
+        <div class="slots-area">
+            <!-- 5 Барабанов -->
+            <div class="col-window"><div class="strip" id="col0"></div></div>
+            <div class="col-window"><div class="strip" id="col1"></div></div>
+            <div class="col-window"><div class="strip" id="col2"></div></div>
+            <div class="col-window"><div class="strip" id="col3"></div></div>
+            <div class="col-window"><div class="strip" id="col4"></div></div>
+            
+            <!-- Слой для линий (SVG для рисования победных линий) -->
+            <svg id="linesSvg" class="lines-layer"></svg>
+        </div>
+
+        <div class="controls-area">
+            <div class="info-panel">
+                <div class="tag">BALANCE</div>
+                <div class="val" id="balance">{{ balance }}</div>
+            </div>
+
+            <div class="bet-panel">
+                <button onclick="changeBet(-50)">-</button>
+                <div class="bet-display">
+                    <span style="font-size:12px; color:#888;">BET</span>
+                    <input id="betInput" value="100" readonly>
+                </div>
+                <button onclick="changeBet(50)">+</button>
+            </div>
+
+            <div class="info-panel">
+                <div class="tag">WIN</div>
+                <div class="val win-text" id="winDisplay">0</div>
+            </div>
+        </div>
+
+        <button id="spinBtn" class="grand-spin-btn" onclick="play()">SPIN</button>
+        <div id="msg">Нажми PROBEL</div>
+
+    </div>
+
+    <script src="/static/script_grand.js"></script>
+</body>
+</html>

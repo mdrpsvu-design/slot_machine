@@ -1,0 +1,237 @@
+:root {
+    /* УВЕЛИЧЕННЫЕ РАЗМЕРЫ */
+    --icon-height: 180px;  /* Было 120 */
+    --reel-width: 160px;   /* Было 100 */
+    --machine-width: 700px;
+    
+    --gold: #ffcc00;
+    --dark-bg: #1a1a1a;
+    --win-color: #00ff00;
+}
+
+body {
+    background: #050505;
+    background-image: radial-gradient(circle at center, #2a2a2a 0%, #000 100%);
+    color: white;
+    font-family: 'Arial Black', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    user-select: none;
+}
+
+.casino-machine {
+    width: var(--machine-width);
+    background: linear-gradient(180deg, #444, #222);
+    border-radius: 30px;
+    padding: 30px;
+    box-shadow: 
+        0 0 0 10px #111,
+        0 0 50px rgba(255, 204, 0, 0.3);
+    text-align: center;
+    position: relative;
+}
+
+.logo {
+    font-size: 40px;
+    background: linear-gradient(to bottom, #ffd700, #ff8c00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0 0 20px 0;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+.screen-border {
+    background: #000;
+    padding: 15px;
+    border-radius: 15px;
+    border: 4px solid #555;
+    box-shadow: inset 0 0 20px #000;
+    margin-bottom: 20px;
+}
+
+.reels-display {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    /* Обрезаем все лишнее */
+    overflow: hidden; 
+}
+
+.reel-window {
+    width: var(--reel-width);
+    height: var(--icon-height);
+    background: white;
+    border-radius: 8px;
+    overflow: hidden; /* Важно! */
+    position: relative;
+    box-shadow: inset 0 0 30px rgba(0,0,0,1);
+    border: 2px solid #333;
+}
+
+.reel-strip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transform: translateY(0);
+    will-change: transform;
+}
+
+.slot-icon {
+    height: var(--icon-height);
+    width: var(--reel-width);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 90px; /* Большие эмодзи */
+    background: linear-gradient(to right, #e0e0e0, #fff, #e0e0e0);
+    border-bottom: 1px solid #ccc;
+}
+
+/* Линия победы */
+.winning-line {
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    right: -10px;
+    height: 4px;
+    background: red;
+    z-index: 10;
+    box-shadow: 0 0 10px red;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* Интерфейс */
+.interface {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 20px;
+    background: #2b2b2b;
+    padding: 15px;
+    border-radius: 15px;
+    border: 1px solid #444;
+}
+
+.hud-box {
+    background: #000;
+    border: 2px solid #555;
+    padding: 5px 10px;
+    border-radius: 6px;
+    min-width: 100px;
+}
+
+.hud-label {
+    font-size: 10px;
+    color: #888;
+    margin-top: 5px;
+}
+
+.hud-value {
+    font-size: 24px;
+    color: var(--gold);
+}
+
+.hud-value.win { color: #0f0; }
+
+.bet-control {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.bet-control input {
+    width: 60px;
+    background: #000;
+    color: white;
+    border: 1px solid #555;
+    font-size: 20px;
+    text-align: center;
+    padding: 5px;
+}
+.bet-control button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    padding: 0;
+    font-size: 18px;
+    background: #555;
+}
+
+/* Большая кнопка SPIN */
+.spin-button {
+    width: 100%;
+    padding: 20px;
+    font-size: 32px;
+    font-weight: 900;
+    border-radius: 50px;
+    border: none;
+    background: linear-gradient(180deg, #ff4400, #aa0000);
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 8px 0 #660000, 0 15px 20px rgba(0,0,0,0.5);
+    transition: transform 0.1s, box-shadow 0.1s;
+    outline: none;
+}
+
+.spin-button:active {
+    transform: translateY(8px);
+    box-shadow: 0 0 0 #660000, inset 0 5px 10px rgba(0,0,0,0.5);
+}
+
+.spin-button:disabled {
+    background: #555;
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: translateY(8px);
+}
+
+.hint {
+    margin-top: 10px;
+    color: #777;
+    font-size: 12px;
+}
+
+.refill-btn {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 10px;
+    cursor: pointer;
+    margin-top: 5px;
+    width: 100%;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.refill-btn:hover { background: rgba(255, 215, 0, 0.1); }
+
+/* Overlay для рекламы */
+.overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hidden { display: none; }
+.ad-content { text-align: center; color: white; }
+.loader {
+    border: 5px solid #333;
+    border-top: 5px solid var(--gold);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+.blur-effect { filter: blur(4px); }
+.win-anim { animation: blink 0.5s infinite; }
+@keyframes blink { 50% { opacity: 0.5; } }
